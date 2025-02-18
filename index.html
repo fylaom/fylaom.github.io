@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florian May</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        @font-face {
+            font-family: 'PoppinsRegular';
+            src: url('files/fonts/Poppins-Regular.ttf') format('truetype');
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'PoppinsBold';
+            src: url('files/fonts/Poppins-Bold.ttf') format('truetype');
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'PoppinsLight';
+            src: url('files/fonts/Poppins-Light.ttf') format('truetype');
+            font-display: swap;
+        }
+        
+        html {
+            height: 100%;
+        }
+        
+        body {
+            height: 100%;
+            font-family: 'PoppinsRegular', sans-serif;
+            margin: 0;
+            background-color: #181818;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            height: 100px;
+            background-color: #181818;
+        }
+        
+        #links {
+            flex: 1;
+            padding-left: 2vw;
+        }
+        
+        #mitte {
+            flex: 1;
+            text-align: center;
+        }
+        
+        #rechts {
+            flex: 1;
+            text-align: right;
+            padding-right: 2vw;
+        }
+        
+        #title {
+            font-size: 30px;
+            color: aliceblue;
+            font-family: 'PoppinsBold';
+            margin: 0;
+        }
+        
+        header a {
+            text-decoration: none;
+            font-size: 20px;
+            color: aliceblue;
+        }
+        
+        .gitnav {
+            display: inline-block;
+        }
+        
+        #showreel {
+            position: relative;
+            height: 85vh;
+            background-color: aliceblue;
+            overflow: hidden;
+        }
+        
+        #showreel-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            object-fit: cover;
+            will-change: transform;
+        }
+        
+        #construction-warning {
+            visibility: hidden;
+            font-family: 'PoppinsRegular', sans-serif;
+            color: aliceblue;
+            position: absolute;
+            text-align: center;
+            padding: 0 2vw;
+        }
+        
+        #trenner {
+            background-color: #181818;
+            height: 10vh;
+        }
+        
+        .gallery {
+            width: 80vw;
+            height: 50vmin;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1vmin;
+        }
+        
+        .gallery img {
+            height: 100%;
+            filter: grayscale(0.5) brightness(0.75);
+            object-fit: cover;
+            overflow: hidden;
+            flex: 1;
+            transition: filter 0.7s, flex 0.7s;
+            will-change: filter, flex;
+        }
+        
+        .gallery img:hover {
+            filter: grayscale(0) brightness(1.15);
+            flex: 6;
+        }
+        
+        .image-container {
+            padding: 5vw 0;
+        }
+        
+        .projects {
+            border-color: aliceblue;
+            text-align: left;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #wave {
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            margin-bottom: -1px;
+            background-image: url('files/pics/elemente/Balken_mit_nichts.svg');
+            background-repeat: repeat-x;
+            will-change: transform;
+        }
+        
+        .aboutme {
+            border-color: aliceblue;
+            padding: 20vh 15vw 15vh 12vw;
+            text-align: left;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #me {
+            width: 17vw;
+        }
+        
+        h3 {
+            font-family: 'PoppinsBold', sans-serif;
+            color: aliceblue;
+            text-align: left;
+            font-size: 66px;
+            line-height: 80px;
+            font-weight: 400;
+            margin: 20px 0 2px;
+        }
+        
+        p,
+        a {
+            font-family: 'PoppinsRegular', sans-serif;
+            color: aliceblue;
+            display: block;
+            font-size: 25px;
+            text-align: left;
+        }
+        
+        .git_button {
+            text-align: center;
+            color: aliceblue;
+            padding: 10px;
+            border: solid aliceblue;
+            border-radius: 7px;
+            text-decoration: none;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        
+        .git_button:hover {
+            background-color: aliceblue;
+            color: #181818;
+        }
+        
+        .box {
+            padding: 20px;
+        }
+        
+        .left-box {
+            text-align: right;
+        }
+        
+        .right-box {
+            max-width: 33vw;
+        }
+        
+        .archiv {
+            margin-top: 1vw;
+            border-color: transparent;
+        }
+        
+        .effect2:hover {
+            text-decoration: underline;
+        }
+        
+        .line {
+            border: none;
+            height: 2px;
+            background-color: aliceblue;
+            width: 30%;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        #footer-text {
+            padding-bottom: 3vh;
+            text-align: center;
+        }
+        
+        @media only screen and (max-width: 1200px) {
+            p,
+            a {
+                font-size: 20px;
+            }
+            .aboutme {
+                padding: 15vh 10vw 10vh 8vw;
+            }
+        }
+        
+        @media only screen and (max-width: 1024px) {
+            .right-box {
+                max-width: 45vw;
+            }
+            #me {
+                width: 30vw;
+            }
+            #footer-text {
+                font-size: 16px;
+            }
+            #wave {
+                height: 70px;
+            }
+            h3 {
+                font-size: 48px;
+                line-height: 60px;
+            }
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .gallery {
+                height: 60vmin;
+                width: 90vw;
+            }
+            #footer-text {
+                font-size: 16px;
+            }
+            .aboutme {
+                padding: 10vh 5vw 8vh 5vw;
+            }
+            p,
+            a {
+                font-size: 18px;
+            }
+            h3 {
+                font-size: 42px;
+                line-height: 52px;
+            }
+        }
+        
+        @media only screen and (max-width: 550px) {
+            header {
+                height: 80px;
+                padding: 15px;
+            }
+            #links {
+                flex: 1;
+                text-align: left;
+                padding-left: 5vw;
+            }
+            #title {
+                font-size: 24px;
+            }
+            .gitnav {
+                display: none;
+            }
+            #mitte,
+            #rechts {
+                display: none;
+            }
+            #showreel {
+                height: 70vh;
+            }
+            .gallery {
+                flex-direction: column;
+                height: auto;
+                gap: 2vmin;
+            }
+            .gallery img {
+                width: 100%;
+                height: 50vmin;
+                transition: filter 0.7s;
+            }
+            .gallery img:hover {
+                flex: 1;
+                filter: grayscale(0) brightness(1.15);
+            }
+            .image-container {
+                padding: 8vw 0;
+            }
+            .aboutme {
+                flex-direction: column;
+                align-items: center;
+                padding: 8vh 5vw 5vh 5vw;
+                text-align: center;
+            }
+            .left-box {
+                text-align: center;
+                padding: 0 0 20px 0;
+            }
+            #me {
+                width: 60vw;
+                margin-bottom: 20px;
+            }
+            .right-box {
+                max-width: 90vw;
+                text-align: center;
+            }
+            p,
+            a {
+                font-size: 16px;
+                text-align: center;
+            }
+            h3 {
+                font-size: 36px;
+                line-height: 44px;
+                text-align: center;
+                margin: 10px 0;
+            }
+            .git_button {
+                display: inline-block;
+                margin: 15px auto;
+                padding: 12px 25px;
+            }
+            #trenner {
+                height: 5vh;
+            }
+            #construction-warning {
+                visibility: visible;
+                font-size: 14px;
+                padding: 10px 15px;
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 5px;
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                max-width: 90%;
+            }
+            .line {
+                width: 50%;
+                margin: 30px auto;
+            }
+            #footer-text {
+                font-size: 14px;
+                padding: 20px 0;
+            }
+        }
+        
+        @media only screen and (max-width: 375px) {
+            #title {
+                font-size: 22px;
+            }
+            h3 {
+                font-size: 32px;
+                line-height: 40px;
+            }
+            p,
+            a {
+                font-size: 15px;
+            }
+            .gallery img {
+                height: 45vmin;
+            }
+            #me {
+                width: 70vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="links">
+            <a href="./">
+                <h1 id="title">florianmay.</h1>
+            </a>
+        </div>
+        <div id="mitte"></div>
+        <div id="rechts">
+            <a class="git_button gitnav" href="#contact">get in touch</a>
+        </div>
+    </header>
+
+    <section id="showreel">
+        <video id="showreel-video" autoplay muted loop playsinline>
+            <source src="files/pics/Showreel_v01.mov" type="video/quicktime">
+            Dein Browser unterstützt kein Video.
+        </video>
+        <p id="construction-warning">This website is still under construction. For the best experience use a PC.</p>
+    </section>
+
+    <section id="trenner"></section>
+
+    <section id="work">
+        <div class="projects">
+            <div class="image-container">
+                <div class="gallery" id="gallery1">
+                    <img src="files/pics/x/2024_gitarre.jpg" alt="Bild 1" loading="lazy">
+                    <img src="files/pics/x/2024_totale.jpg" alt="Bild 2" loading="lazy">
+                    <img src="files/pics/x/WTF_Gitarre_close.jpg" alt="Bild 3" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div id="wave"></div>
+        <div class="aboutme">
+            <div class="box left-box">
+                <img src="files/pics/Polaroid_blur_small.gif" alt="Bild" id="me" loading="lazy">
+            </div>
+            <div class="box right-box">
+                <h3>Hi!</h3>
+                <p class="text">Florian May is a videographer and photographer based in Leipzig, Germany.</p>
+                <a class="git_button gitme" href="mailto:contact@florianmay.de">get in touch</a>
+            </div>
+        </div>
+        <hr class="line">
+        <p id="footer-text">Florian May &copy; 2025</p>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const wave = document.getElementById('wave');
+            let position = 0;
+
+            function animate() {
+                position += 0.5;
+                wave.style.backgroundPositionX = position + 'px';
+                requestAnimationFrame(animate);
+            }
+
+            requestAnimationFrame(animate);
+        });
+    </script>
+</body>
+
+</html>
